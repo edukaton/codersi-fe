@@ -4,7 +4,7 @@ export function Home() {
   return (
     <section style={{ height: '100%' }}>
       <h1>Home</h1>
-      <div style={{ width: '300px', height: '50%', background: 'red' }} />
+      <div style={{ width: '100%', height: '200px', background: '#393' }} />
     </section>
   );
 }

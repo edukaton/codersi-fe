@@ -5,33 +5,30 @@ export class CRUDDao<I, R> {
   ) {}
 
   public get(id: string): Promise<R> {
-    return fetch(`${this.getUrl(this.path)}/${id}`).then(this.toJson);
+    return fetch(`${this.getUrl(this.path)}/${id}`).then(this.resolve);
   }
 
   public getAll(): Promise<R> {
-    return fetch(this.getUrl(this.path)).then(this.toJson);
+    return fetch(this.getUrl(this.path)).then(this.resolve);
   }
 
   public create(input: I): Promise<R> {
     return fetch(this.getUrl(this.path), {
       method: 'POST',
+      // mode: 'cors',
       // tslint:disable:no-any
       body: input as any,
     })
-      .then(this.rejectOnFail)
-      .then(this.toJson);
+      .then(this.resolve);
   }
 
-  private getUrl(path: string): string {
-    return 'https://jsonplaceholder.typicode.com/' + path;
+  protected getUrl(path: string): string {
+    return 'https://blekitna-wrozka.frb.io/api/' + path; // FIXME: don't hardcode
   }
 
-  private rejectOnFail(response: Response): Promise<Response> {
-    return response.status < 400 ? Promise.resolve(response) : Promise.reject('oops');
-  }
-
-  private toJson(response: Response): any {
-    return response.json();
+  protected resolve(response: Response): Promise<R> {
+    console.log(response);
+    return response.status < 400 ? Promise.resolve(response.json()) : Promise.reject('oops');
   }
 
 }

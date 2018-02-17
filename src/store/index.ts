@@ -1,9 +1,10 @@
 import { Map } from 'immutable';
-import { createStore, applyMiddleware } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import { rootReducer } from 'reducers';
+import { reviewsReducer } from 'reducers';
 import { IReview } from 'dto';
 
 export interface IStoreState {
@@ -15,7 +16,10 @@ const initialState = {
 };
 
 export const configureStore = () => createStore(
-  rootReducer,
+  combineReducers({
+    reviews: reviewsReducer,
+    routing: routerReducer
+  }),
   initialState,
   composeWithDevTools(applyMiddleware(thunk)),
 );

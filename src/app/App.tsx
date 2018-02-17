@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+// import { browserHistory } from 'react-router';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { syncHistoryWithStore } from 'react-router-redux';
 
-import { loadReview } from '../actions';
+import { createReview, loadReview } from '../actions';
 import { IReview } from '../dto';
 import { IStoreState } from '../store';
 
@@ -16,6 +18,8 @@ interface IProps {
   reviews: Map<string, IReview>;
 }
 
+// const history = syncHistoryWithStore(browserHistory, store);
+
 class App extends React.Component<IProps> {
   render() {
     return (
@@ -25,7 +29,14 @@ class App extends React.Component<IProps> {
           <div className="App">
             <button
               onClick={() => {
-                this.props.dispatch(loadReview('1'));
+                this.props.dispatch(createReview('abc'));
+              }}
+            >
+              Create
+            </button>
+            <button
+              onClick={() => {
+                this.props.dispatch(loadReview(''));
               }}
             >
               Load
