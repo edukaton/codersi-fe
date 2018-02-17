@@ -1,0 +1,4 @@
+.reviewer__questions {
+  width: 40%; }
+  .reviewer__questions .question .card-body:first-child {
+    padding-bottom: 0; }
