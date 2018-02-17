@@ -1,22 +1,39 @@
 import * as React from 'react';
+import { connect, Dispatch } from 'react-redux';
+
+import { loadReview } from '../actions';
+import { IReview } from '../dto';
+import { IStoreState } from '../store';
+
 import './App.css';
 
-const logo = require('../images/logo.svg');
+interface IProps {
+  dispatch: Dispatch<IStoreState>;
+  reviews: Map<string, IReview>;
+}
 
-class App extends React.Component {
+class App extends React.Component<IProps> {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <button
+          onClick={() => {
+            this.props.dispatch(loadReview('1'));
+          }}
+        >
+          Load
+        </button>
+        <pre>
+          {JSON.stringify(this.props.reviews, null, 2)}
+        </pre>
       </div>
     );
   }
 }
 
-export default App;
+// tslint:disable:no-any
+export default (connect as any)(
+  ({ reviews }: IStoreState) => ({
+    reviews,
+  })
+)(App);
