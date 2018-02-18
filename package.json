@@ -32,14 +32,14 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-ts": "react-scripts-ts start",
-    "start": "npm-run-all -p watch-css start-ts",
-    "build-ts": "react-scripts-ts build",
-    "build": "npm-run-all build-css build-ts",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts DONTeject"
+    "build-css": "./node_modules/.bin/node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && ./node_modules/.bin/node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-ts": "./node_modules/.bin/react-scripts-ts start",
+    "start": "./node_modules/.bin/npm-run-all -p watch-css start-ts",
+    "build-ts": "./node_modules/.bin/react-scripts-ts build",
+    "build": "./node_modules/.bin/npm-run-all build-css build-ts",
+    "test": "./node_modules/.bin/react-scripts-ts test --env=jsdom",
+    "eject": "./node_modules/.bin/react-scripts-ts DONTeject"
   },
   "devDependencies": {
     "@types/jest": "22.1.3",

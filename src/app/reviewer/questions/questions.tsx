@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardBody, CardTitle, Progress } from 'reactstrap';
+import { Card, CardBody, CardTitle, Progress, Table } from 'reactstrap';
 import { connect, Dispatch } from 'react-redux';
 
 import { IAnswer, IQuestion } from 'dto';
@@ -36,25 +36,29 @@ export class QuestionsView extends React.Component<IProps> {
     const answersCount = this.props.answers.length;
     const questionsCount = this.props.questions.length;
     const question = this.props.questions[answersCount];
+    const score = '31';
+    const showResult = !question && answersCount > 0;
     return (
       <aside className={COMPONENT}>
-        <Card className={`${COMPONENT}__title-card`}>
-          <CardBody>
-            <CardTitle>
-              Barometr wiarygodności artykułu
-            </CardTitle>
-          </CardBody>
-        </Card>
-        <Card className={`${COMPONENT}__progress`}>
-          <CardBody>
-            <Progress
-              color={bsColor}
-              value={Math.floor(20 + answersCount / questionsCount * 80)}
-            >
-              {answersCount} / {questionsCount}
-            </Progress>
-          </CardBody>
-        </Card>
+        {showResult ? null : [
+          <Card key={0} className={`${COMPONENT}__title-card`}>
+            <CardBody>
+              <CardTitle>
+                Barometr wiarygodności artykułu
+              </CardTitle>
+            </CardBody>
+          </Card>,
+          <Card key={1} className={`${COMPONENT}__progress`}>
+            <CardBody>
+              <Progress
+                color={bsColor}
+                value={Math.floor(20 + answersCount / questionsCount * 80)}
+              >
+                {answersCount} / {questionsCount}
+              </Progress>
+            </CardBody>
+          </Card>
+        ]}
         {question ? (
           <Question dispatch={this.props.dispatch} question={question}>
             {React.createElement(questionComponents[question.type], {
@@ -63,10 +67,45 @@ export class QuestionsView extends React.Component<IProps> {
             } )}
           </Question>
         ) : null}
-        {!question && answersCount > 0 ? (
+        {showResult ? (
           <Card>
             <CardBody>
-              <CardTitle>Wynik</CardTitle>
+              <CardTitle>
+                <span style={{ lineHeight: '80px' }}>
+                  Twoja ocena:
+                  <strong style={{ fontSize: '4em', float: 'right' }}>{score}%</strong>
+                </span>
+                <Progress color="danger" value={score} />
+              </CardTitle>
+            </CardBody>
+            <CardBody>
+              <Table style={{ marginTop: '20px' }}>
+                <tbody>
+                  {this.props.answers.map((answer, i) => {
+                    const theQuestion =
+                      this.props.questions.find(({ id }) => id === answer.questionId);
+                    return (
+                      <tr key={i}>
+                        <td>{theQuestion.title}</td>
+                        <th>
+                          {typeof answer.data === 'boolean' ?
+                            answer.data ? 'TAK' : 'NIE' :
+                            null}
+                          {typeof answer.data === 'number' ?
+                            answer.data :
+                            null}
+                          {typeof answer.data === 'string' ?
+                            answer.data :
+                            null}
+                        </th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+              {/*<pre>*/}
+                {/*{JSON.stringify(this.props.answers, null, 2)}*/}
+              {/*</pre>*/}
             </CardBody>
           </Card>
         ) : null}
