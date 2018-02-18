@@ -9,6 +9,7 @@ export function Binary({ dispatch, question }: IQuestionProps) {
     <div style={{ textAlign: 'center' }}>
       <Button
         color="success"
+        disabled={question.id === 'qi1'}
         onClick={() => {
           dispatch(addAnswer({
             reviewId: question.reviewId,

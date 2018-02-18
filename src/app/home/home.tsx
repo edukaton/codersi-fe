@@ -60,7 +60,7 @@ export class HomeView extends React.Component<IProps, IState> {
             inline
             onSubmit={e => {
               e.preventDefault();
-              const id = uuid.v4();
+              const id = uuid.v4().slice(0, 6);
               this.props.dispatch(createReview(id, url));
               this.props.dispatch(push('#' + id));
               // this.props.dispatch(push('#maLGWznu'));

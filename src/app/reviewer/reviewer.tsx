@@ -17,7 +17,10 @@ import './reviewer.css';
 class ReviewerView extends React.Component<IProps> {
   render() {
     return (
-      <section className={`page ${COMPONENT}`} style={{ height: window.innerHeight }}>
+      <section
+        className={`page ${COMPONENT}`}
+        style={{ height: window.innerHeight, minHeight: window.innerHeight }}
+      >
         {/*<iframe*/}
           {/*className={`${COMPONENT}__source`}*/}
           {/*src="http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT"*/}

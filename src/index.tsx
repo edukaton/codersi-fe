@@ -9,6 +9,8 @@ import { configureStore, history } from './store';
 // import 'bootstrap/dist/css/bootstrap.css';
 import 'bootswatch/dist/yeti/bootstrap.css';
 
+import 'font-awesome/css/font-awesome.css';
+
 import './index.css';
 
 ReactDOM.render(

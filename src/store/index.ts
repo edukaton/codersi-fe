@@ -55,7 +55,7 @@ const mockQuestions: IQuestion[] = [
     "extraDescriptionText": "Jak ocenić czy nagłówek jest sensacyjny?",
     "extraDescription": "Zastanów się, czy w nagłówku jest dużo przymiotników, wykrzykników i słów nacechowanych emocjonalnie: “sromotna klęska”, “hańba”, “sukces”, “tragedia”. Czy nagłówek zawiera takie zwroty jak “nie do wiary”, albo “szok”? Jeśli tak, to jest duża szansa, że nie jest to wartościowy i rzetelny artykuł.",
     "extraDescriptionAlways": false,
-    "type": QuestionType.Range,
+    "type": QuestionType.Binary,
     "reviewId": "maLGWznu",
     "skipDesc": "",
     "skipNo": 0,
@@ -181,7 +181,7 @@ const mockQuestions: IQuestion[] = [
     "extraDescription": "Czy artykuł jest zilustrowany zdjęciami? Jeśli tak, to czy zdjęcia są ważne dla artykułu, na przykład pokazują sylwetkę sprawcy, albo miejsce wypadku, czy są jedynie ilustracją (na przykład zdjęciem owoców do artykułu o zdrowiu?).",
     "extraDescriptionText": "Jak rozróżnić istotne i nieistotne dla artykułu zdjęcia?",
     "extraDescriptionAlways": false,
-    "type": QuestionType.Range,
+    "type": QuestionType.Binary,
     "reviewId": "maLGWznu",
     "skipDesc": "",
     "skipNo": 0,
@@ -216,6 +216,7 @@ const mockQuestions: IQuestion[] = [
     "pointsMultiplier": 0
   }
 ];
+// ].slice(0, 2);
 
 const mockReviews = Map<string, IReview>([
   ['maLGWznu', {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Card, CardBody, CardTitle, Progress, Table } from 'reactstrap';
+import * as FontAwesome from 'react-fontawesome';
 import { connect, Dispatch } from 'react-redux';
 
 import { IAnswer, IQuestion } from 'dto';
@@ -14,7 +15,6 @@ import { Range } from './range';
 import { Text } from './text';
 
 import './questions.css';
-import { bsColor } from '../../../config';
 
 interface IProps {
   answers: IAnswer[];
@@ -43,15 +43,15 @@ export class QuestionsView extends React.Component<IProps> {
         {showResult ? null : [
           <Card key={0} className={`${COMPONENT}__title-card`}>
             <CardBody>
-              <CardTitle style={{ textTransform: 'uppercase' }}>
+              <CardTitle style={{ textTransform: 'uppercase', fontWeight: 'bold', textAlign: 'center' }}>
                 Miernik Prawdy
               </CardTitle>
             </CardBody>
-          </Card>,
-          <Card key={1} className={`${COMPONENT}__progress`}>
+          {/*</Card>,*/}
+          {/*<Card key={1} className={`${COMPONENT}__progress`}>*/}
             <CardBody>
               <Progress
-                color={bsColor}
+                color="info"
                 value={Math.floor(20 + answersCount / questionsCount * 80)}
               >
                 {answersCount} / {questionsCount}
@@ -75,14 +75,32 @@ export class QuestionsView extends React.Component<IProps> {
                   Wiarygodność artykułu:
                   <strong style={{ fontSize: '3em', float: 'right' }}>{score}%</strong>
                 </span>
-                <Progress color="danger" value={score} style={{ height: '30px' }} />
+                <Progress
+                  className="result-progress-bar"
+                  color="danger"
+                  value={score}
+                  style={{ height: '30px' }}
+                />
                 <br />
-                <p>
-                  Na podstawie Twoich odpowiedzi oszacowaliśmy możliwość, że ten artykuł
-                  jest nierzetelny i niewiarygodny.
+                <p style={{ fontSize: '16px' }}>
+                  Na podstawie odpowiedzi oszacowaliśmy, że artykuł
+                  jest mało wiarygodny.
                   Pamiętaj, że wynik jest tylko zaproszeniem do dyskusji.
                 </p>
               </CardTitle>
+            </CardBody>
+            <CardBody>
+              <h3 style={{ fontSize: '18px' }}>Podziel się wynikiem i dyskutuj</h3>
+              <p>
+                Skopiuj link i wyślij do siebie lub znajomego:<br/>
+                <mark>{window.location.href}</mark>
+              </p>
+              <p>
+                Podziel się <br/>
+                <FontAwesome name="facebook-square" size="2x" /> {' '}
+                <FontAwesome name="twitter" size="2x" /> {' '}
+                <FontAwesome name="envelope" size="2x" /> {' '}
+              </p>
             </CardBody>
             <CardBody>
               <h5>Podsumowanie</h5>
