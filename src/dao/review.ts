@@ -1,3 +1,12 @@
+import { IReview, IReviewInput } from '../dto';
 import { CRUDDao } from './crud';
 
-export const ReviewDao = new CRUDDao('posts');
+class ReviewDao extends CRUDDao<IReviewInput, IReview> {
+
+  constructor(path: string) {
+    super(path);
+  }
+
+}
+
+export const reviewDao = new ReviewDao('test');
