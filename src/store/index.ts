@@ -18,36 +18,44 @@ export interface IStoreState {
   router: RouterState;
 }
 
-export const mockQuestions: IQuestion[] = [
+const mockQuestions: IQuestion[] = [
   {
     description: 'przykładowy opis przykładowy opis przykładowy opis ',
     id: 'q1',
-    reviewId: 'jjj',
+    reviewId: 'maLGWznu',
     title: 'Wiarygodna domena?',
     type: QuestionType.Binary,
   },
   {
     description: 'wybór wartości na skali wybór wartości na skali wybór wartości na skali',
     id: 'q1',
-    reviewId: 'jjj',
+    reviewId: 'maLGWznu',
     title: 'Oceń sensacyjność',
     type: QuestionType.Range,
   },
   {
     description: 'skomentowanie skomentowanie skomentowanie',
     id: 'q1',
-    reviewId: 'jjj',
+    reviewId: 'maLGWznu',
     title: 'Skomentuj coś',
     type: QuestionType.Text,
   },
 ];
 
+const mockReviews = Map<string, IReview>([
+  ['maLGWznu', {
+    id: 'maLGWznu',
+    url: 'http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT',
+  }]
+]);
+
 const initialState = {
   answers: Map(),
-  reviews: Map(),
+  // reviews: Map(),
+  reviews: mockReviews,
   // questions: Map(),
   questions: Map([
-    ['jjj', mockQuestions],
+    ['maLGWznu', mockQuestions],
   ])
 };
 

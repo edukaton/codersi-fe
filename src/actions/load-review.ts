@@ -5,7 +5,7 @@ import { IStoreState } from 'store';
 
 export const LOAD_REVIEW_SUCCESS = 'LOAD_REVIEW_SUCCESS';
 
-export const loadReview = (id: string) => (dispatch: Dispatch<IStoreState>) => {
+export const loadReview = (id: string) => (dispatch: Dispatch<IStoreState>) =>
   reviewDao.get(id)
     .then(review => {
       dispatch({
@@ -13,4 +13,3 @@ export const loadReview = (id: string) => (dispatch: Dispatch<IStoreState>) => {
         payload: { id, review },
       });
     });
-};

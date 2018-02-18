@@ -17,12 +17,16 @@ import './reviewer.css';
 class ReviewerView extends React.Component<IProps> {
   render() {
     return (
-      <section className={`page ${COMPONENT}`}>
+      <section className={`page ${COMPONENT}`} style={{ height: window.innerHeight }}>
         {/*<iframe*/}
           {/*className={`${COMPONENT}__source`}*/}
           {/*src="http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT"*/}
         {/*/>*/}
-        <div className={`${COMPONENT}__source`} />
+        <iframe
+          className={`${COMPONENT}__source`}
+          src={this.props.review.url}
+        />
+        {/*<div className={`${COMPONENT}__source`} />*/}
         <Questions />
       </section>
     );
@@ -31,7 +35,7 @@ class ReviewerView extends React.Component<IProps> {
 
 // tslint:disable:no-any
 export const Reviewer = (connect as any)(
-  ({ reviews }: IStoreState) => ({
-    review: reviews.get('1'),
+  ({ reviews, router }: IStoreState) => ({
+    review: reviews.get(router.location.hash.slice(1)),
   })
 )(ReviewerView);

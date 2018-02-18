@@ -10,6 +10,7 @@
     "@types/react-router-redux": "5.0.12",
     "@types/react-transition-group": "2.0.7",
     "@types/reactstrap": "5.0.17",
+    "animated-scroll-to": "1.1.8",
     "bootstrap": "4.0.0",
     "bootswatch": "4.0.0",
     "connected-react-router": "4.3.0",

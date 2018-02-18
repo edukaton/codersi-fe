@@ -20,4 +20,5 @@
     margin: 0 10px;
     width: 700px !important; }
   .home__action {
-    height: 57px; }
+    height: 57px;
+    text-transform: uppercase; }
