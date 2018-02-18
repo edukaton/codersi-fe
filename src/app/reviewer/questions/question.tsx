@@ -26,6 +26,7 @@ export class Question extends React.Component<IProps, IState> {
 
   render() {
     const { children, question } = this.props;
+    question.extraDescriptionAlways = true;
     return (
       <Card className="question">
         <CardBody>

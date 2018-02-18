@@ -43,8 +43,8 @@ export class QuestionsView extends React.Component<IProps> {
         {showResult ? null : [
           <Card key={0} className={`${COMPONENT}__title-card`}>
             <CardBody>
-              <CardTitle>
-                Barometr wiarygodności artykułu
+              <CardTitle style={{ textTransform: 'uppercase' }}>
+                Miernik Prawdy
               </CardTitle>
             </CardBody>
           </Card>,
@@ -68,14 +68,15 @@ export class QuestionsView extends React.Component<IProps> {
           </Question>
         ) : null}
         {showResult ? (
-          <Card>
+          <Card style={{ background: '#ddd' }}>
             <CardBody>
               <CardTitle>
                 <span style={{ lineHeight: '70px' }}>
-                  Twoja ocena:
+                  Wiarygodność artykułu:
                   <strong style={{ fontSize: '3em', float: 'right' }}>{score}%</strong>
                 </span>
-                <Progress color="danger" value={score} />
+                <Progress color="danger" value={score} style={{ height: '30px' }} />
+                <br />
                 <p>
                   Na podstawie Twoich odpowiedzi oszacowaliśmy możliwość, że ten artykuł
                   jest nierzetelny i niewiarygodny.
@@ -123,7 +124,7 @@ export class QuestionsView extends React.Component<IProps> {
 // tslint:disable:no-any
 export const Questions = (connect as any)(
   ({ answers, questions, router }: IStoreState) => ({
-    answers: answers.get(router.location.hash.slice(1)) || [],
-    questions: questions.get(router.location.hash.slice(1)) || [],
+    answers: answers.get('maLGWznu') || [],
+    questions: questions.get('maLGWznu') || [],  // HARDCODED
   })
 )(QuestionsView);

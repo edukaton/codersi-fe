@@ -3,8 +3,9 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
+import * as uuid from 'uuid';
 
-// import { createReview, loadReview } from '../../actions';
+import { createReview } from '../../actions';
 import { IStoreState } from '../../store';
 import { bsColor } from '../../config';
 import { IReview } from '../../dto';
@@ -48,18 +49,21 @@ export class HomeView extends React.Component<IProps, IState> {
     return (
       <section className={`page ${COMPONENT}`} style={{ height: window.innerHeight }}>
         <div className="App">
-          <h1>Wiadomościomierz</h1>
-          <h3>Oceniaj wiarygodność treści w internecie</h3>
-          <h3>Dziel się wnioskami ze znajomymi</h3>
-          <h3>Wyjaśniaj i dyskutuj</h3>
+          <hgroup>
+            <h3>Sprawdzaj wiarygodność treści w internecie</h3>
+            <h3>Dziel się wnioskami ze znajomymi</h3>
+            <h3>Wyjaśniaj i dyskutuj</h3>
+          </hgroup>
           {/*http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT*/}
           <Form
             className={`${COMPONENT}__url-form`}
             inline
             onSubmit={e => {
               e.preventDefault();
-              // this.props.dispatch(createReview(url));
-              this.props.dispatch(push('#maLGWznu'));
+              const id = uuid.v4();
+              this.props.dispatch(createReview(id, url));
+              this.props.dispatch(push('#' + id));
+              // this.props.dispatch(push('#maLGWznu'));
             }}
           >
             <FormGroup>
@@ -68,7 +72,7 @@ export class HomeView extends React.Component<IProps, IState> {
                 onChange={e => {
                   this.setState({ url: e.currentTarget.value });
                 }}
-                placeholder="wklej adres URL do artykułu"
+                placeholder="Wklej tutaj link do artykułu, który chcesz sprawdzić"
                 type="text"
                 value={url}
               />

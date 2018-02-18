@@ -19,6 +19,11 @@ interface IProps {
 // const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends React.Component<IProps> {
+
+  componentDidMount() {
+    document.title = 'Miernik Prawdy';
+  }
+
   render() {
     return (
       <Router>
