@@ -42,11 +42,18 @@ export class Question extends React.Component<IProps, IState> {
               this.setState(({ showExtra }: IState) => ({ showExtra: !showExtra }));
             }}
           >
-            {this.state.showExtra ? 'ukryj' : 'jak zdecydować?'}
+            {question.extraDescriptionAlways ?
+              null :
+              this.state.showExtra ?
+                'ukryj' :
+                (Boolean(question.extraDescriptionText) ?
+                  question.extraDescriptionText :
+                  'jak zdecydować?')}
           </Button>
-          {question.extraDescription && this.state.showExtra ? (
-            <p>{question.extraDescription}</p>
-          ) : null}
+          {((question.extraDescription && this.state.showExtra) ||
+            question.extraDescriptionAlways) ? (
+              <p>{question.extraDescription}</p>
+            ) : null}
         </CardBody>
       </Card>
     );

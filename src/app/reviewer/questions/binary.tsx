@@ -6,18 +6,19 @@ import { addAnswer } from '../../../actions';
 
 export function Binary({ dispatch, question }: IQuestionProps) {
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <Button
-        color="danger"
+        color="success"
         onClick={() => {
           dispatch(addAnswer({
             reviewId: question.reviewId,
             questionId: question.id,
-            data: false,
+            data: true,
           }));
         }}
+        style={{ width: '100px' }}
       >
-        Nie
+        Tak
       </Button>
       {' '}
       <Button
@@ -29,8 +30,9 @@ export function Binary({ dispatch, question }: IQuestionProps) {
             data: false,
           }));
         }}
+        style={{ width: '100px', marginLeft: '10px' }}
       >
-        Tak
+        Nie
       </Button>
     </div>
   );
