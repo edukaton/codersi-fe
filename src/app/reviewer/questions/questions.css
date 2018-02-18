@@ -1,4 +1,5 @@
 .reviewer__questions {
+  padding: 15px 20px;
   width: 40%; }
   .reviewer__questions .question .card-body:first-child {
     padding-bottom: 0; }

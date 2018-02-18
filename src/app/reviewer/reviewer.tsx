@@ -22,6 +22,7 @@ class ReviewerView extends React.Component<IProps> {
           {/*className={`${COMPONENT}__source`}*/}
           {/*src="http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT"*/}
         {/*/>*/}
+        <div className={`${COMPONENT}__source`} />
         <Questions />
       </section>
     );
