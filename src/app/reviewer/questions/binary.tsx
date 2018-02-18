@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Button, ButtonGroup } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 import { IQuestionProps } from './config';
 import { addAnswer } from '../../../actions';
 
 export function Binary({ dispatch, question }: IQuestionProps) {
   return (
-    <ButtonGroup>
+    <div>
       <Button
+        color="danger"
         onClick={() => {
           dispatch(addAnswer({
             reviewId: question.reviewId,
@@ -18,7 +19,9 @@ export function Binary({ dispatch, question }: IQuestionProps) {
       >
         Nie
       </Button>
+      {' '}
       <Button
+        color="success"
         onClick={() => {
           dispatch(addAnswer({
             reviewId: question.reviewId,
@@ -29,6 +32,6 @@ export function Binary({ dispatch, question }: IQuestionProps) {
       >
         Tak
       </Button>
-    </ButtonGroup>
+    </div>
   );
 }

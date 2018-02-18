@@ -4,8 +4,9 @@ import { connect, Dispatch } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 
-import { createReview, loadReview } from '../../actions';
+// import { createReview, loadReview } from '../../actions';
 import { IStoreState } from '../../store';
+import { bsColor } from '../../config';
 import { IReview } from '../../dto';
 
 import './home.css';
@@ -24,7 +25,8 @@ const COMPONENT = 'home';
 export class HomeView extends React.Component<IProps, IState> {
 
   componentWillReceiveProps(newProps: IProps) {
-    if (newProps.review && !this.props.review) {
+    if (newProps.review && !this.props.review ||
+      (newProps.review && newProps.review.url) !== (this.props.review && this.props.review.url) ) {
       setTimeout(
         () => {
           animateScrollTo(window.innerHeight);
@@ -37,12 +39,12 @@ export class HomeView extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      url: '',
+      url: (props.review && props.review.url) || '',
     };
   }
 
   render() {
-    // const { url } = this.state;
+    const { url } = this.state;
     return (
       <section className={`page ${COMPONENT}`} style={{ height: window.innerHeight }}>
         <div className="App">
@@ -65,36 +67,38 @@ export class HomeView extends React.Component<IProps, IState> {
                 }}
                 placeholder="wklej adres URL do artykułu"
                 type="text"
+                value={url}
               />
             </FormGroup>{' '}
             <Button
               className={`${COMPONENT}__action`}
-              color="success"
+              color={bsColor}
               type="submit"
             >
               Analizuj
             </Button>
           </Form>
 
-          <div style={{ opacity: 0.3 }}>
-            <button
-              onClick={() => {
-                this.props.dispatch(createReview('http://a.pl'));
-              }}
-            >
-              Create
-            </button>
-            <button
-              onClick={() => {
-                this.props.dispatch(loadReview('r1'));
-              }}
-            >
-              Load
-            </button>
-            <pre>
-              {JSON.stringify(this.props.review, null, 2)}
-            </pre>
-          </div>
+          {/*<div style={{ opacity: 0.3 }}>*/}
+            {/*<button*/}
+              {/*onClick={() => {*/}
+                {/*this.props.dispatch(createReview('http://a.pl'));*/}
+              {/*}}*/}
+            {/*>*/}
+              {/*Create*/}
+            {/*</button>*/}
+            {/*<button*/}
+              {/*onClick={() => {*/}
+                {/*this.props.dispatch(loadReview('r1'));*/}
+              {/*}}*/}
+            {/*>*/}
+              {/*Load*/}
+            {/*</button>*/}
+            {/*<pre>*/}
+              {/*{JSON.stringify(this.props.review, null, 2)}*/}
+            {/*</pre>*/}
+          {/*</div>*/}
+
         </div>
       </section>
     );

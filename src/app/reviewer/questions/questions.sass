@@ -1,11 +1,17 @@
 .reviewer__questions
   padding: 30px 40px
-  width: 40%
+  width: 30%
 
   .question
 
     .card-body:not(:last-child)
       padding-bottom: 0
+
+  &__title-card
+    margin-bottom: 10px
+
+    h5
+      margin: 0
 
   &__progress
     margin-bottom: 10px
@@ -17,3 +23,12 @@
 
   .progress-bar
     color: #fff
+
+  .btn:not(.btn-link)
+    text-transform: uppercase
+
+  .btn-link
+    padding-left: 0
+
+  textarea
+    height: 100px

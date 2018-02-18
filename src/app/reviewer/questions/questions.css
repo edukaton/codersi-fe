@@ -1,8 +1,12 @@
 .reviewer__questions {
   padding: 30px 40px;
-  width: 40%; }
+  width: 30%; }
   .reviewer__questions .question .card-body:not(:last-child) {
     padding-bottom: 0; }
+  .reviewer__questions__title-card {
+    margin-bottom: 10px; }
+    .reviewer__questions__title-card h5 {
+      margin: 0; }
   .reviewer__questions__progress {
     margin-bottom: 10px; }
     .reviewer__questions__progress .card-body {
@@ -10,3 +14,9 @@
       padding-top: 10px; }
   .reviewer__questions .progress-bar {
     color: #fff; }
+  .reviewer__questions .btn:not(.btn-link) {
+    text-transform: uppercase; }
+  .reviewer__questions .btn-link {
+    padding-left: 0; }
+  .reviewer__questions textarea {
+    height: 100px; }

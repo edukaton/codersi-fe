@@ -18,6 +18,7 @@ export function Range({ dispatch, question }: IQuestionProps) {
             }));
           }}
           size="sm"
+          title={question.rangeDescription && question.rangeDescription[i]}
         >
           {i}
         </Button>

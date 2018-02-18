@@ -3,6 +3,7 @@ import { Button, Input } from 'reactstrap';
 
 import { addAnswer } from 'actions';
 
+import { bsColor } from '../../../config';
 import { IQuestionProps } from './config';
 
 interface IState {
@@ -29,7 +30,9 @@ export class Text extends React.Component<IQuestionProps, IState> {
           type="textarea"
           value={this.state.text}
         />
+        <br/>
         <Button
+          color={bsColor}
           onClick={() => {
             dispatch(addAnswer({
               reviewId: question.reviewId,

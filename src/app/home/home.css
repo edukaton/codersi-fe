@@ -16,9 +16,11 @@
     left: 0;
     right: 0; }
   .home__url-input.form-control {
-    font-size: 2em;
+    font-size: 1.5em;
+    line-height: 45px;
     margin: 0 10px;
     width: 700px !important; }
   .home__action {
+    font-size: 1.5em !important;
     height: 57px;
     text-transform: uppercase; }

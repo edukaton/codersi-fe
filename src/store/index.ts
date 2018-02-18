@@ -20,18 +20,23 @@ export interface IStoreState {
 
 const mockQuestions: IQuestion[] = [
   {
-    description: 'przykładowy opis przykładowy opis przykładowy opis ',
+    description: 'przykładowy opis przykładowy opis przykładowy opis, bo wiarygodność domeny to niewiarygodnie ważna sprawa sprawa przykładowy opis przykładowy opis przykładowy opis, bo wiarygodność domeny to niewiarygodnie ważna sprawa sprawa',
+    extraDescription: 'dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, najlepiej, żeby to był w miarę prawdziwy tekst, niestety nie jest, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., dodatkowy opis, wyjaśnie itd., ',
     id: 'q1',
     reviewId: 'maLGWznu',
     title: 'Wiarygodna domena?',
     type: QuestionType.Binary,
   },
   {
-    description: 'wybór wartości na skali wybór wartości na skali wybór wartości na skali',
+    description: 'wybór wartości na skali wybór wartości na skali wybór wartości na skali (0 - zupełnie niesensacyjne, 10 - skrajnie sensacyjne)',
     id: 'q1',
     reviewId: 'maLGWznu',
     title: 'Oceń sensacyjność',
     type: QuestionType.Range,
+    rangeDescription: {
+      0: 'zupełnie niesensacyjne',
+      10: 'skrajnie sensacyjne',
+    }
   },
   {
     description: 'skomentowanie skomentowanie skomentowanie',

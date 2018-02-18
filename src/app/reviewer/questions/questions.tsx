@@ -14,6 +14,7 @@ import { Range } from './range';
 import { Text } from './text';
 
 import './questions.css';
+import { bsColor } from '../../../config';
 
 interface IProps {
   answers: IAnswer[];
@@ -37,9 +38,19 @@ export class QuestionsView extends React.Component<IProps> {
     const question = this.props.questions[answersCount];
     return (
       <aside className={COMPONENT}>
+        <Card className={`${COMPONENT}__title-card`}>
+          <CardBody>
+            <CardTitle>
+              Barometr wiarygodności artykułu
+            </CardTitle>
+          </CardBody>
+        </Card>
         <Card className={`${COMPONENT}__progress`}>
           <CardBody>
-            <Progress value={Math.floor(20 + answersCount / questionsCount * 80)}>
+            <Progress
+              color={bsColor}
+              value={Math.floor(20 + answersCount / questionsCount * 80)}
+            >
               {answersCount} / {questionsCount}
             </Progress>
           </CardBody>
