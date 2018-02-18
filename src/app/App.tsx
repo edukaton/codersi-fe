@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
-// import { browserHistory } from 'react-router';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import { syncHistoryWithStore } from 'react-router-redux';
 
 import { IStoreState } from '../store';
 

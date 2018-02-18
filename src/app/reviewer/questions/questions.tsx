@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { Card, CardBody, CardTitle, Progress } from 'reactstrap';
 import { connect, Dispatch } from 'react-redux';
 
+import { IAnswer, IQuestion } from 'dto';
+import { QuestionType } from 'model';
 import { IStoreState } from 'store';
-import { IQuestion, QuestionType } from 'model';
 
-import { COMPONENT } from '../config';
+import { COMPONENT as PARENT_COMPONENT } from '../config';
 import { Question } from './question';
 
 import { Binary } from './binary';
@@ -14,26 +16,10 @@ import { Text } from './text';
 import './questions.css';
 
 interface IProps {
+  answers: IAnswer[];
   dispatch: Dispatch<IStoreState>;
+  questions: IQuestion[];
 }
-
-export const questions: IQuestion[] = [
-  {
-    description: 'przykładowy opis przykładowy opis przykładowy opis ',
-    title: 'Wiarygodna domena?',
-    type: QuestionType.Binary,
-  },
-  {
-    description: 'wybór wartości na skali wybór wartości na skali wybór wartości na skali',
-    title: 'Oceń sensacyjność',
-    type: QuestionType.Range,
-  },
-  {
-    description: 'skomentowanie skomentowanie skomentowanie',
-    title: 'Skomentuj coś',
-    type: QuestionType.Text,
-  },
-];
 
 const questionComponents = {
   [QuestionType.Binary]: Binary,
@@ -41,21 +27,47 @@ const questionComponents = {
   [QuestionType.Text]: Text,
 };
 
+const COMPONENT = `${PARENT_COMPONENT}__questions`;
+
 export class QuestionsView extends React.Component<IProps> {
   render() {
+    console.log('QuestionsView', this.props.questions, this.props.answers);
+    const answersCount = this.props.answers.length;
+    const questionsCount = this.props.questions.length;
+    const question = this.props.questions[answersCount];
     return (
-      <aside className={`${COMPONENT}__questions`}>
-        <h2>Questions</h2>
-        {questions.map((question, i) => (
-          <Question key={i} question={question}>
-            {React.createElement(questionComponents[question.type], { question })}
+      <aside className={COMPONENT}>
+        <Card className={`${COMPONENT}__progress`}>
+          <CardBody>
+            <Progress value={Math.floor(20 + answersCount / questionsCount * 80)}>
+              {answersCount} / {questionsCount}
+            </Progress>
+          </CardBody>
+        </Card>
+        {question ? (
+          <Question dispatch={this.props.dispatch} question={question}>
+            {React.createElement(questionComponents[question.type], {
+              dispatch: this.props.dispatch,
+              question,
+            } )}
           </Question>
-        ))}
-        {/*<pre>{JSON.stringify(questions, null, 2)}</pre>*/}
+        ) : null}
+        {!question && answersCount > 0 ? (
+          <Card>
+            <CardBody>
+              <CardTitle>Wynik</CardTitle>
+            </CardBody>
+          </Card>
+        ) : null}
       </aside>
     );
   }
 }
 
 // tslint:disable:no-any
-export const Questions = (connect as any)()(QuestionsView);
+export const Questions = (connect as any)(
+  ({ answers, questions, router }: IStoreState) => ({
+    answers: answers.get(router.location.hash.slice(1)) || [],
+    questions: questions.get(router.location.hash.slice(1)) || [],
+  })
+)(QuestionsView);

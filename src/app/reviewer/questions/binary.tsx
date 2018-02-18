@@ -1,11 +1,34 @@
 import * as React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-export function Binary() {
+import { IQuestionProps } from './config';
+import { addAnswer } from '../../../actions';
+
+export function Binary({ dispatch, question }: IQuestionProps) {
   return (
     <ButtonGroup>
-      <Button>Nie</Button>
-      <Button>Tak</Button>
+      <Button
+        onClick={() => {
+          dispatch(addAnswer({
+            reviewId: question.reviewId,
+            questionId: question.id,
+            data: false,
+          }));
+        }}
+      >
+        Nie
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(addAnswer({
+            reviewId: question.reviewId,
+            questionId: question.id,
+            data: false,
+          }));
+        }}
+      >
+        Tak
+      </Button>
     </ButtonGroup>
   );
 }

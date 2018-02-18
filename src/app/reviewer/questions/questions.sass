@@ -4,5 +4,16 @@
 
   .question
 
-    .card-body:first-child
+    .card-body:not(:last-child)
       padding-bottom: 0
+
+  &__progress
+    margin-bottom: 10px
+
+    .card-body
+      padding:
+        bottom: 10px
+        top: 10px
+
+  .progress-bar
+    color: #fff

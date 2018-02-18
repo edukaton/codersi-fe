@@ -9,4 +9,4 @@ class ReviewDao extends CRUDDao<IReviewInput, IReview> {
 
 }
 
-export const reviewDao = new ReviewDao('review');
+export const reviewDao = new ReviewDao('test');

@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { Dispatch } from 'react-redux';
 import { Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
-import { IQuestion } from 'model';
+import { IQuestion } from 'dto';
+import { IStoreState } from 'store';
 
 interface IProps {
   children: any; // tslint:disable-line:no-any
+  dispatch: Dispatch<IStoreState>;
   question: IQuestion;
 }
 
-export function Question({ children, question }: IProps) {
+export function Question({ children, dispatch, question }: IProps) {
   return (
     <Card className="question">
       <CardBody>
@@ -17,7 +20,6 @@ export function Question({ children, question }: IProps) {
       </CardBody>
       <CardBody>
         {children}
-        {/*<pre>{JSON.stringify(question, null, 2)}</pre>*/}
       </CardBody>
     </Card>
   );

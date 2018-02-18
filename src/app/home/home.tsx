@@ -13,19 +13,42 @@ interface IProps {
   reviews: Map<string, IReview>;
 }
 
+interface IState {
+  url: string;
+}
+
 const COMPONENT = 'home';
 
-export class HomeView extends React.Component<IProps> {
+export class HomeView extends React.Component<IProps, IState> {
+
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      url: '',
+    };
+  }
+
   render() {
+    const { url } = this.state;
     return (
       <section className={`page ${COMPONENT}`}>
         <div className="App">
           <h1>Wiarygodniomierz</h1>
 
-          <Form className={`${COMPONENT}__url-form`} inline>
+          <Form
+            className={`${COMPONENT}__url-form`}
+            inline
+            onSubmit={e => {
+              e.preventDefault();
+              this.props.dispatch(createReview(url));
+            }}
+          >
             <FormGroup>
               <Input
                 className={`${COMPONENT}__url-input`}
+                onChange={e => {
+                  this.setState({ url: e.currentTarget.value });
+                }}
                 placeholder="wklej adres URL do artykułu"
                 type="text"
               />
@@ -41,14 +64,14 @@ export class HomeView extends React.Component<IProps> {
 
           <button
             onClick={() => {
-              this.props.dispatch(createReview('abc'));
+              this.props.dispatch(createReview('http://a.pl'));
             }}
           >
             Create
           </button>
           <button
             onClick={() => {
-              this.props.dispatch(loadReview(''));
+              this.props.dispatch(loadReview('r1'));
             }}
           >
             Load

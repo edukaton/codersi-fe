@@ -15,7 +15,6 @@ export class CRUDDao<I, R> {
   public create(input: I): Promise<R> {
     return fetch(this.getUrl(this.path), {
       method: 'POST',
-      // mode: 'cors',
       // tslint:disable:no-any
       body: input as any,
     })

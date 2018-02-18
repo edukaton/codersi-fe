@@ -1,2 +1,2 @@
 export * from './action';
-export * from './question';
+export * from './question-type';
