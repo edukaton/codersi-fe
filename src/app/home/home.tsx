@@ -48,8 +48,11 @@ export class HomeView extends React.Component<IProps, IState> {
     return (
       <section className={`page ${COMPONENT}`} style={{ height: window.innerHeight }}>
         <div className="App">
-          <h1>Wiarygodniomierz</h1>
-
+          <h1>Wiadomościomierz</h1>
+          <h3>Oceniaj wiarygodność treści w internecie</h3>
+          <h3>Dziel się wnioskami ze znajomymi</h3>
+          <h3>Wyjaśniaj i dyskutuj</h3>
+          {/*http://wiadomosci.gazeta.pl/wiadomosci/7,114883,23036572,duda-gratuluje-stochowi-medalu-piekny-prezent-na-100-lecie.html#Z_MT*/}
           <Form
             className={`${COMPONENT}__url-form`}
             inline

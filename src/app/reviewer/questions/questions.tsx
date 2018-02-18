@@ -71,14 +71,20 @@ export class QuestionsView extends React.Component<IProps> {
           <Card>
             <CardBody>
               <CardTitle>
-                <span style={{ lineHeight: '80px' }}>
+                <span style={{ lineHeight: '70px' }}>
                   Twoja ocena:
-                  <strong style={{ fontSize: '4em', float: 'right' }}>{score}%</strong>
+                  <strong style={{ fontSize: '3em', float: 'right' }}>{score}%</strong>
                 </span>
                 <Progress color="danger" value={score} />
+                <p>
+                  Na podstawie Twoich odpowiedzi oszacowaliśmy możliwość, że ten artykuł
+                  jest nierzetelny i niewiarygodny.
+                  Pamiętaj, że wynik jest tylko zaproszeniem do dyskusji.
+                </p>
               </CardTitle>
             </CardBody>
             <CardBody>
+              <h5>Podsumowanie</h5>
               <Table style={{ marginTop: '20px' }}>
                 <tbody>
                   {this.props.answers.map((answer, i) => {
@@ -92,10 +98,10 @@ export class QuestionsView extends React.Component<IProps> {
                             answer.data ? 'TAK' : 'NIE' :
                             null}
                           {typeof answer.data === 'number' ?
-                            answer.data :
+                            `${answer.data}/10` :
                             null}
                           {typeof answer.data === 'string' ?
-                            answer.data :
+                            'odp.' :
                             null}
                         </th>
                       </tr>
